@@ -1,17 +1,114 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <style>
+    /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+    blockquote,
+    body,
+    dd,
+    dl,
+    dt,
+    fieldset,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    html,
+    iframe,
+    legend,
+    li,
+    ol,
+    p,
+    pre,
+    textarea,
+    ul {
+      margin: 0;
+      padding: 0
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 100%;
+      font-weight: 400
+    }
+
+    ul {
+      list-style: none
+    }
+
+    button,
+    input,
+    select {
+      margin: 0
+    }
+
+    html {
+      box-sizing: border-box
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: inherit
+    }
+
+    img,
+    video {
+      height: auto;
+      max-width: 100%
+    }
+
+    iframe {
+      border: 0
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0
+    }
+
+    td,
+    th {
+      padding: 0
+    }
+
+    #titleBar {
+      -webkit-app-region: drag;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    button {
+      -webkit-app-region: no-drag;
+    }
+  </style>
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

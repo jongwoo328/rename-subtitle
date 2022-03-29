@@ -1,4 +1,18 @@
 <template>
+  <el-dialog v-model="errorDialogVisible" :title="errorData.title" width="30%">
+    <span v-text="errorData.message"></span>
+    <template #footer>
+      <div>
+        <el-button
+          class="w-100"
+          type="primary"
+          plain
+          @click="errorDialogVisible = false"
+          >OK</el-button
+        >
+      </div>
+    </template>
+  </el-dialog>
   <div class="file-section w-100 d-flex p-2">
     <FileInput class="input-section w-50" title="동영상 파일" />
     <FileInput class="input-section w-50" title="자막 파일" />
@@ -67,7 +81,20 @@ export default defineComponent({
     const customNameInput = ref("");
     const customEpisodeInput = ref(1);
 
-    return { radio, isCustomSelected, customNameInput, customEpisodeInput };
+    const errorData = ref({
+      title: "title",
+      message: "message",
+    });
+    const errorDialogVisible = ref(false);
+
+    return {
+      radio,
+      errorDialogVisible,
+      isCustomSelected,
+      customNameInput,
+      customEpisodeInput,
+      errorData,
+    };
   },
 });
 </script>

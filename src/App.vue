@@ -1,6 +1,8 @@
 <template>
   <TitleBar />
-  <router-view id="routerView" />
+  <div class="container" style="padding-bottom: 50px">
+    <router-view id="routerView" />
+  </div>
 </template>
 
 <script lang="ts">

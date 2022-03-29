@@ -42,7 +42,6 @@
 import { computed, defineComponent, ref, Ref } from "vue";
 import FileInputElement from "@/components/home/FileInputElement.vue";
 import { VueUploadItem } from "vue-upload-component";
-import fs from "fs";
 
 export default defineComponent({
   name: "FileInput",

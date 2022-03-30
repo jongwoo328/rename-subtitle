@@ -5,6 +5,13 @@ import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
+import { ipcMain } from "electron";
+import fs from "fs";
+import path from "path";
+import { dialog } from "electron";
+
+let win: BrowserWindow;
+
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
@@ -12,11 +19,13 @@ protocol.registerSchemesAsPrivileged([
 
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 992,
-    height: 935,
-    minWidth: 550,
-    minHeight: 600,
+    height: 975,
+    minWidth: 992,
+    minHeight: 975,
+    maxWidth: 992,
+    maxHeight: 975,
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#495057",
@@ -90,3 +99,59 @@ if (isDevelopment) {
     });
   }
 }
+
+function onError(error: any) {
+  if (error) {
+    dialog.showMessageBox(win, {
+      type: "error",
+      title: "File Rename Error",
+      message: JSON.stringify({
+        message: error.message,
+        stack: error.stack,
+      }),
+    });
+    return error;
+  }
+}
+
+ipcMain.handle("rename-video", async (event, { data }) => {
+  const { videoFile, subtitleFile } = data;
+
+  const videoFilePathParsed = path.parse(videoFile.path);
+  const subtitleFilePathParsed = path.parse(subtitleFile.path);
+  fs.rename(
+    subtitleFile.path,
+    `${subtitleFilePathParsed.dir}\\${videoFilePathParsed.name}${subtitleFilePathParsed.ext}`,
+    onError
+  );
+});
+
+ipcMain.handle("rename-subtitle", async (event, { data }) => {
+  const { videoFile, subtitleFile } = data;
+
+  const videoFilePathParsed = path.parse(videoFile.path);
+  const subtitleFilePathParsed = path.parse(subtitleFile.path);
+  fs.rename(
+    subtitleFile.path,
+    `${subtitleFilePathParsed.dir}\\${videoFilePathParsed.name}${subtitleFilePathParsed.ext}`,
+    onError
+  );
+});
+
+ipcMain.handle("rename-custom", async (event, { data }) => {
+  const { videoFile, subtitleFile, customData } = data;
+
+  const videoFilePathParsed = path.parse(videoFile.path);
+  const subtitleFilePathParsed = path.parse(subtitleFile.path);
+  const { customNameInput, customEpisodeInput } = customData;
+  fs.rename(
+    subtitleFile.path,
+    `${subtitleFilePathParsed.dir}\\${customNameInput}_${customEpisodeInput}${subtitleFilePathParsed.ext}`,
+    onError
+  );
+  fs.rename(
+    videoFile.path,
+    `${videoFilePathParsed.dir}\\${customNameInput}_${customEpisodeInput}${videoFilePathParsed.ext}`,
+    onError
+  );
+});

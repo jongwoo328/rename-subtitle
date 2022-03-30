@@ -10,4 +10,9 @@ module.exports = defineConfig({
       },
     },
   },
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+    },
+  },
 });

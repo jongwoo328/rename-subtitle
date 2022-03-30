@@ -13,5 +13,8 @@ export default defineComponent({
 #titleBar {
   height: 30px;
   background-color: #495057;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 </style>

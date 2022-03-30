@@ -3,6 +3,15 @@
     <h4 class="fw-bold">{{ props.title }}</h4>
     <div class="d-flex file-upload-wrap">
       <div class="overflow-auto w-100 position-relative">
+        <file-upload
+          class="file-upload w-100"
+          style="height: 98%; z-index: 0"
+          ref="upload"
+          :drop="true"
+          v-model="files"
+          multiple
+        >
+        </file-upload>
         <div
           class="position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center"
           style="top: 0"
@@ -11,7 +20,7 @@
           <p class="mb-0">클릭하여 업로드</p>
           <p class="mb-0">또는 드래그 앤 드롭</p>
         </div>
-        <div v-else>
+        <div class="position-absolute w-100" style="top: 0" v-else>
           <FileInputElement
             @delete-file="onDeleteFile"
             v-for="file in files"
@@ -19,15 +28,6 @@
             :file="file"
           />
         </div>
-        <file-upload
-          class="file-upload w-100"
-          style="height: 97%"
-          ref="upload"
-          :drop="true"
-          v-model="files"
-          multiple
-        >
-        </file-upload>
       </div>
     </div>
     <div class="w-100 mt-2 d-flex justify-content-end">
@@ -67,7 +67,11 @@ export default defineComponent({
       files.value.splice(idx, 1);
     }
 
-    return { props, files, isFileExist, onDeleteAll, onDeleteFile };
+    function getFiles() {
+      return files.value;
+    }
+
+    return { props, files, isFileExist, onDeleteAll, onDeleteFile, getFiles };
   },
 });
 </script>
@@ -79,7 +83,7 @@ export default defineComponent({
   max-height: 450px;
   height: 50vh;
 
-  &::v-deep {
+  &:deep {
     .file-upload {
       width: 100%;
       height: 100%;

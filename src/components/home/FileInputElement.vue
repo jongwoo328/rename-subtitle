@@ -46,9 +46,11 @@ p {
 }
 
 .file-element {
+  background-color: white;
   &:hover {
-    background-color: #339af0;
-    color: white;
+    background-color: #868e96;
+    cursor: pointer;
+    color: #e9ecef;
   }
 }
 

@@ -21,16 +21,17 @@ async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 992,
-    height: 975,
+    height: 985,
     minWidth: 992,
-    minHeight: 975,
+    minHeight: 985,
     maxWidth: 992,
-    maxHeight: 975,
+    maxHeight: 985,
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#495057",
       symbolColor: "#74b1be",
     },
+    icon: __dirname + "public/icon.ico",
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

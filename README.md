@@ -1,24 +1,4 @@
 # rename-subtitle
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 앱 아이콘
+해당 앱 아이콘은 Flaticon.com의 리소스를 사용하여 디자인되었습니다.

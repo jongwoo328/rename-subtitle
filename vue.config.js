@@ -13,6 +13,13 @@ module.exports = defineConfig({
   pluginOptions: {
     electronBuilder: {
       nodeIntegration: true,
+      builderOptions: {
+        productName: "Rename Subtitle",
+        appId: "me.jongwoo.rename-subtitle",
+        win: {
+          icon: "public/icon.png",
+        },
+      },
     },
   },
 });

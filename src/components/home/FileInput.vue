@@ -2,10 +2,10 @@
   <div class="p-3">
     <h4 class="fw-bold">{{ props.title }}</h4>
     <div class="d-flex file-upload-wrap">
-      <div class="overflow-auto w-100 position-relative">
+      <div class="upload-section overflow-auto w-100 position-relative">
         <file-upload
           class="file-upload w-100"
-          style="height: 98%; z-index: 0"
+          style="height: 98%; z-index: 1"
           ref="upload"
           :drop="true"
           v-model="files"
@@ -14,19 +14,21 @@
         </file-upload>
         <div
           class="position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center"
-          style="top: 0"
+          style="top: 0; z-index: 0"
           v-if="!files.length"
         >
           <p class="mb-0">클릭하여 업로드</p>
           <p class="mb-0">또는 드래그 앤 드롭</p>
         </div>
-        <div class="position-absolute w-100" style="top: 0" v-else>
-          <FileInputElement
-            @delete-file="onDeleteFile"
-            v-for="file in files"
-            :key="file.id"
-            :file="file"
-          />
+        <div class="position-absolute w-100" style="top: 0; z-index: 2" v-else>
+          <draggable v-model="files">
+            <FileInputElement
+              @delete-file="onDeleteFile"
+              v-for="file in files"
+              :key="file.id"
+              :file="file"
+            />
+          </draggable>
         </div>
       </div>
     </div>
@@ -42,13 +44,14 @@
 import { computed, defineComponent, ref, Ref } from "vue";
 import FileInputElement from "@/components/home/FileInputElement.vue";
 import { VueUploadItem } from "vue-upload-component";
+import { VueDraggableNext } from "vue-draggable-next";
 
 export default defineComponent({
   name: "FileInput",
   props: {
     title: String,
   },
-  components: { FileInputElement },
+  components: { FileInputElement, draggable: VueDraggableNext },
   setup(props) {
     const files: Ref<Array<VueUploadItem>> = ref([]);
     const isFileExist = computed(() => Boolean(files.value.length));
@@ -82,6 +85,10 @@ export default defineComponent({
   min-height: 300px;
   max-height: 450px;
   height: 50vh;
+
+  .upload-section {
+    background-color: #dee2e6;
+  }
 
   &:deep {
     .file-upload {

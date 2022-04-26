@@ -22,13 +22,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "NanumSquareR";
-  src: url("@/assets/font/NanumSquareR.ttf") format("truetype");
-}
-
 #app {
-  font-family: NanumSquareR, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
